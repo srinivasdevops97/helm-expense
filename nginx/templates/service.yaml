@@ -1,0 +1,15 @@
+# service
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx  # name of the service
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: nginx
+    tier: frontend
+  ports:       # list of the ports
+  - name: nginx-svc-port
+    protocol: TCP
+    port: {{ .Values.service.port }}      # service port
+    targetPort: 80     # container port(another port)
